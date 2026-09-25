@@ -8,8 +8,10 @@ import { ApiResponse } from '../models/api-response.model';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  // Default API url target
-  private baseUrl = 'http://localhost:5000/api';
+  // Production live MonsterASP backend with localhost fallback
+  private baseUrl = typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api'
+    : 'https://bizflow-erp-api.runasp.net/api';
 
   setBaseUrl(url: string): void {
     this.baseUrl = url;
