@@ -8,10 +8,10 @@ import { ApiResponse } from '../models/api-response.model';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  // Production live MonsterASP backend with localhost fallback
+  // Relative /api proxy on Vercel to avoid Mixed Content (HTTP/HTTPS) and CORS issues
   private baseUrl = typeof window !== 'undefined' && window.location.hostname === 'localhost'
     ? 'http://localhost:5000/api'
-    : 'https://bizflow-erp-api.runasp.net/api';
+    : '/api';
 
   setBaseUrl(url: string): void {
     this.baseUrl = url;
